@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import math
-"""Import math module for area calculation """
+"""Import math module for area calculation"""
 
 
 class MagicClass:
