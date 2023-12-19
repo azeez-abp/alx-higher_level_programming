@@ -1,4 +1,10 @@
 #!/usr/bin/python3
+"""Write a description module here"""
+
+
+class Square:
+    """write class description here"""
+    pass
 class Node:
     def __init__(self, data, next_node=None):
         """Defines a node of a singly linked list"""
