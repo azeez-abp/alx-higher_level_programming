@@ -6,7 +6,7 @@ from sys import argv
 from sqlalchemy import (create_engine)
 from model_state import Base, State
 from model_city import City
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker
 
 
 if __name__ == "__main__":
@@ -14,8 +14,14 @@ if __name__ == "__main__":
                            (argv[1], argv[2], argv[3]), pool_pre_ping=True)
     Base.metadata.create_all(engine)
 
-    session = Session(engine)
-    for city, state in session.query(City, State)\
-            .filter(City.state_id == State.id).order_by(City.id).all():
-        print("{}: ({}) {}".format(state.name, city.id, city.name))
+    Session = sessionmaker(bind=engine)
+
+    with Session() as session:
+        try:
+            for city, state in session.query(City, State) \
+                    .filter(City.state_id == State.id) \
+                    .order_by(City.id).all():
+                print("{}: ({}) {}".format(state.name, city.id, city.name))
+        except Exception as e:
+            print("Error", e)
     session.close()
