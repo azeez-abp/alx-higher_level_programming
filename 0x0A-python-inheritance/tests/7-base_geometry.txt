@@ -1,0 +1,26 @@
+Checking for module docstring:
+>>> m = __import__("7-base_geometry").__doc__
+>>> bool(m)
+True
+
+Checking for class docstring:
+>>> c = __import__("7-base_geometry").BaseGeometry.__doc__
+>>> bool(c)
+True
+
+Checking for method docstring:
+>>> mod = __import__("7-base_geometry").BaseGeometry.area.__doc__
+>>> bool(mod)
+True
+
+Checking for method docstring:
+>>> mod = __import__("7-base_geometry").BaseGeometry.integer_validator.__doc__
+>>> bool(mod)
+True
+
+Checking if Exception is raised for area method:
+>>> geometry   = __import__("7-base_geometry")
+>>> geo_obj  = geometry.BaseGeometry()
+>>> area = geo_obj.area() 
+Traceback (most recent call last):
+Exception: area() is not implemented
